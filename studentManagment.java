@@ -11,6 +11,7 @@
 
 import java.util.Scanner;
 import java.util.TreeMap;
+
 public class studentManagment {
 	private static TreeMap<String, Student> db=new TreeMap<String,Student>();
 
@@ -18,22 +19,47 @@ public class studentManagment {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 		int isExit=0;
-		do {
-			System.out.println("Hey, there! Welcome\n");
-			System.out.println("Are you a teacher? (Y/N)");
-			boolean isTeacher=sc.nextLine().toUpperCase().charAt(0)=='Y';
-			if(isTeacher) {
+		
+		System.out.println("Hey, there! Welcome\n");
+		System.out.println("Are you a teacher? (Y/N)");
+		boolean isTeacher=sc.nextLine().toUpperCase().charAt(0)=='Y';
+		if(isTeacher) {
+			teacher(sc);
+			System.out.println("Do You want to Continue?(Press 0 to exit,1 to continue)");
+			isExit=sc.nextInt();
+			do {
+			switch(isExit) {
+			case 0:
+				System.out.println("Thanks for choosing our Database Management System");
+				break;
+			case 1: 
 				teacher(sc);
-			}else {
-				student(sc);
-				System.out.println("Do You want to Continue?(Press 0 to exit)");
-				isExit=sc.nextInt();
-				sc.nextLine();
-			}
-		}while(isExit!=0);
-		sc.close();
-
+				}
+			}while(isExit!=0);
+			
+		}
+		else {
+			student(sc);
+			System.out.println("Do You want to Continue?(Press 0 to exit");
+		
+			
+			do {
+					
+				 isExit=sc.nextInt();
+				
+			switch(isExit) {
+			case 0:
+				System.out.println("Thanks for choosing our Database Management System");
+				return;
+			
+				}
+			}while(isExit!=0);
+			
+		
+			sc.close();
+		}
 	}
+	
 	private static void teacher(Scanner sc) {
 		do {
 			System.out.println("Admin Menu\n1. Add a Student\n2. Update a Student\n3. Remove a Student\n4. View a Student\n0. Exit");
